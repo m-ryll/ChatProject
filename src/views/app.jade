@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+    link(href='/assets/style.css', rel='stylesheet', type='text/css')
+    //
+      script(src='/socket.io/socket.io.js')
+    script(src="assets/client.js")
+  body
+    header
+      h1 Chatterbox
+    #chatcontainer
+      #rightchat
+        #chat
+        input#message(name='message', type='text', placeholder='Start typing...')
+        input#newChat(name='newChat', type='button', value='New Chat');

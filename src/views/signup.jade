@@ -1,0 +1,19 @@
+doctype html
+html(lang='en')
+  head
+    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+    link(href='/assets/style.css', rel='stylesheet', type='text/css')
+    //
+      script(src='/socket.io/socket.io.js')
+    script(src="assets/client.js")
+  body
+    header
+      h1 Chatterbox
+    form#signup(name="signup", action="/signup", method="POST")
+      h2 Sign Up
+      input#username(type="text", name="username", placeholder="username")
+      input#password(type="password", name="password", placeholder="password")
+      input#password2(type="password", name="password2", placeholder="confirm password")
+      input(type="hidden", name="_csrf", value="#{csrfToken}")
+      a#ssubmit(href="#") Submit

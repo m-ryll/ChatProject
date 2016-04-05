@@ -1,0 +1,94 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+body {
+	font-family: 'Roboto', sans-serif;
+}
+header {
+	background-color: black;
+	color: white;
+	padding: 10px;
+	width: 100%;
+	position: fixed;
+}
+h1, h2 {
+	text-align: center;
+}
+#login, #signup {
+	width: 500px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border: 2px solid black;
+}
+input[type="text"], input[type="password"] {
+	display: block;
+	font-size: 15pt;
+	width: 60%;
+	margin: 10px auto;
+	padding: 10px;
+}
+a {
+	border: 1px solid black;
+	color: black;
+	text-decoration: none;
+	padding: 10px;
+	font-size: 12pt;
+	text-align: center;
+}
+input[type="button"] {
+	margin: 20px;
+	padding: 7px;
+	border-radius: 2px;
+	border: 1px solid darkgray;
+	font-size: 8pt;
+	cursor: pointer;
+	text-transform: uppercase;
+	color: black;
+	font-weight: bold;
+	background-color: #F5F5F5;
+	width: 100px;
+}
+input[type="button"]:hover {
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, .4);
+}
+input[type="button"]:active {
+	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, .4);
+}
+#chatcontainer {
+	width: 600px;
+	border: 1px solid black;
+	height: 600px;
+	border-radius: 15px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+#rightchat {
+	width: 600px;
+	height: 600px;
+	float: right;
+	position: relative;
+	top-right-radius: 15px;
+	bottom-right-radius: 15px;
+}
+#chat {
+	overflow-y: scroll;
+	height: 480px;
+	margin: 10px 0 0 10px;
+}
+#message {
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 15px;
+	width: 500px;
+	height: 50px;
+	padding: 0 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 15px;
+	margin: 0 auto;
+}
