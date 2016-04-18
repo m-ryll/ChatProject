@@ -1,21 +1,68 @@
+/* ----- Color palette ----- 
+white: #ecf1ee
+lightblue: #bbc7c5
+darkblue: #96abad
+gray: #82847c
+black: #3f413d;
+*/
+
+
+/* ----- Global ----- */
 * {
 	margin: 0;
 	padding: 0;
 }
 body {
 	font-family: 'Roboto', sans-serif;
-}
-header {
-	background-color: black;
-	color: white;
-	padding: 10px;
-	width: 100%;
-	position: fixed;
+	background-color: #ecf1ee;
 }
 h1, h2 {
 	text-align: center;
 }
-#login, #signup {
+p {
+	font-size: 15pt;
+}
+
+/* ----- Sidebar ----- */
+#sidebar {
+	background-color: #3f413d;
+	color: #ecf1ee;
+	padding: 10px;
+	width: 75px;
+	height: 100vh;
+	position: fixed;
+}
+#icons {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 25px;
+}
+.sidebaricon {
+	display: block;
+	text-align: center;
+}
+.active {
+	color: #82847c;
+}
+.tooltip.right {
+	margin-left: 30px;
+}
+a.icon,
+a.icon:hover,
+a.icon:active,
+a.icon:visited {
+	display: block;
+	text-decoration: none;
+	color: #ecf1ee;
+	margin-bottom: 100px;
+}
+a.icon:last-child {
+	margin-bottom: 0;
+};
+
+/* ----- Forms ----- */
+form {
 	width: 500px;
 	position: absolute;
 	top: 50%;
@@ -23,39 +70,46 @@ h1, h2 {
 	transform: translate(-50%, -50%);
 	border: 2px solid black;
 }
-input[type="text"], input[type="password"] {
+#account {
+	border: none;
+	width: 300px;
+	margin: 0 auto;
+}
+#account input[type="text"], #account textarea {
+	width: 100%;
+	margin-bottom: 30px;
+	max-width: 100%;
+}
+label {
+	font-size: 15pt;
+}
+input[type="text"], input[type="password"], textarea {
 	display: block;
 	font-size: 15pt;
 	width: 60%;
 	margin: 10px auto;
 	padding: 10px;
+	border: 1px solid gray;
 }
-a {
+a.mybutton {
 	border: 1px solid black;
 	color: black;
 	text-decoration: none;
 	padding: 10px;
 	font-size: 12pt;
 	text-align: center;
+	display: block;
+	width: 150px;
+	margin: 10px auto;
 }
-input[type="button"] {
-	margin: 20px;
-	padding: 7px;
-	border-radius: 2px;
-	border: 1px solid darkgray;
-	font-size: 8pt;
-	cursor: pointer;
-	text-transform: uppercase;
-	color: black;
-	font-weight: bold;
-	background-color: #F5F5F5;
-	width: 100px;
-}
-input[type="button"]:hover {
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, .4);
-}
-input[type="button"]:active {
-	box-shadow: inset 0px 1px 2px rgba(0, 0, 0, .4);
+
+/* ----- Main  ----- */
+#main {
+	position: absolute;
+	left: 75px;
+	right: 0;
+	height: 100vh;
+	padding: 200px;
 }
 #chatcontainer {
 	width: 600px;
@@ -91,4 +145,8 @@ input[type="button"]:active {
 	transform: translateX(-50%);
 	bottom: 15px;
 	margin: 0 auto;
+	outline: none;
+}
+#message:focus {
+	border: 2px solid black;
 }

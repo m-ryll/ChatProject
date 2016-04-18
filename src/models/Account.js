@@ -1,3 +1,5 @@
+// Much of this file has been reused from DomoMaker.
+
 var crypto = require('crypto');
 var mongoose = require('mongoose');
 
@@ -13,6 +15,10 @@ var AccountSchema = new mongoose.Schema({
         trim: true,
         unique: true,
         match: /^[A-Za-z0-9_\-\.]{1,16}$/
+    },
+
+    bio: {
+        type: String
     },
 	
 	salt: {
@@ -83,7 +89,6 @@ AccountSchema.statics.authenticate = function(username, password, callback) {
 };
 
 AccountModel = mongoose.model('Account', AccountSchema);
-
 
 module.exports.AccountModel = AccountModel;
 module.exports.AccountSchema = AccountSchema;

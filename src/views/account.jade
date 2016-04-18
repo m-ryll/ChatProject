@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Chatterbox
+    title Account - Chatterbox
     // Include Roboto font from Google Fonts.
     link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
 
@@ -28,12 +28,18 @@ html(lang='en')
       h1 cb
       #icons
         a(href="/app" class="icon" data-toggle="tooltip" data-placement="right" title="Chat")
-          i(class="sidebaricon active fa fa-comment fa-2x")
+          i(class="sidebaricon fa fa-comment fa-2x")
         a(href="/account" class="icon" data-toggle="tooltip" data-placement="right" title="Account")
-          i(class="sidebaricon fa fa-cog fa-2x")
+          i(class="sidebaricon active fa fa-cog fa-2x")
         a(href="/about" class="icon" data-toggle="tooltip" data-placement="right" title="About")
           i(class="sidebaricon fa fa-question-circle fa-2x")
         a(href="/logout" class="icon" data-toggle="tooltip" data-placement="right" title="Sign Out")
           i(class="sidebaricon fa fa-sign-out fa-2x")
     #main
-      h2 This is where chats will take place in my final project!
+      h2 Account
+      form#account(name="account", action="/updateaccount", method="POST")
+        label(for="username") username
+        input#username(type="text", name="username", value=usn, disabled)
+        label(for="bio") bio
+        textarea#bio(name="bio", rows="4", cols="50", placeholder="Write a short bio about yourself.") #{b}
+        a#asubmit(class="mybutton" href="") Save

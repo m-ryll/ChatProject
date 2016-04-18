@@ -1,0 +1,47 @@
+doctype html
+html(lang='en')
+  head
+    title About - Chatterbox
+    // Include Roboto font from Google Fonts.
+    link(href='https://fonts.googleapis.com/css?family=Roboto', rel='stylesheet', type='text/css')
+
+    // Include jQuery.
+    script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+
+    // Include Bootstrap.
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js", integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS", crossorigin="anonymous")
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7", crossorigin="anonymous")
+
+    // Include Font Awesome.
+    link(href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css", rel="stylesheet", type="text/css")
+
+    // Include custom styles.
+    link(href='/assets/style.css', rel='stylesheet', type='text/css')
+
+    // Include Socket.io.
+    script(src='/socket.io/socket.io.js')
+
+    // Include custom scripts.
+    script(src="/assets/client.js")
+  body
+    #sidebar
+      h1 cb
+      #icons
+        a(href="/app" class="icon" data-toggle="tooltip" data-placement="right" title="Chat")
+          i(class="sidebaricon fa fa-comment fa-2x")
+        a(href="/account" class="icon" data-toggle="tooltip" data-placement="right" title="Account")
+          i(class="sidebaricon fa fa-cog fa-2x")
+        a(href="/about" class="icon" data-toggle="tooltip" data-placement="right" title="About")
+          i(class="sidebaricon active fa fa-question-circle fa-2x")
+        a(href="/logout" class="icon" data-toggle="tooltip" data-placement="right" title="Sign Out")
+          i(class="sidebaricon fa fa-sign-out fa-2x")
+    #main
+      h2 About
+      h3 Chatterbox
+      p Chatterbox is a project created for IGME 430: Rich Media and Web App Dev II. Its main purpose is to demonstrate my ability to use a Model-View-Controller framework with Node.js to create dynamic web apps. This particular site is simple in functionality as I plan to extend it for my final course project, which will allow users to create ongoing chats with other users. The project was a challenge because I am still having trouble comprehending Node.js on top of having to learn an entire new method of creating applications with MVC. However, I feel fairly comfortable with these new concepts and look forward to creating something really cool for my final project!
+      h3 MVC
+      p As recommended in the project outline, I used Express as my MVC framework. Views are created with Jade, a popular templating language. The only model I have currently is a user account model, which only stores a username, password, and bio. For the final project, I hope to create a Chat model which will store two user id's and the contents of the chat (if that is feasible).
+      h3 Mongo
+      p I used Mongo to store and retrieve the account information. Again, for the final project I plan to use Mongo more extensively to store chat information.
+      h3 Jade
+      p I utilized Jade as my templating language. It had a bit of a learning curve because I'm so comfortable with strict HTML5 and it was a challenge to have to learn something that was so similar but also so different from HTML. I definitely appreciate the power of templating languages now, though.

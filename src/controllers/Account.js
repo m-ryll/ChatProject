@@ -1,18 +1,31 @@
 var models = require("../models");
-
 var Account = models.Account;
 
-var loginPage = function(req, res) {
+// Render all pages.
+var renderLogin = function(req, res) {
 	res.render("login");
 };
-
-var signupPage = function(req, res) {
+var renderSignup = function(req, res) {
 	res.render("signup");
 };
+var renderAbout = function(req, res) {
+	res.render("about");
+};
+var renderAccount = function(req, res) {
+	Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
+		if(err)
+		{
+			return callback(err);
+		}
+        if(!doc) {
+            return callback();
+        }
 
-var logout = function(req, res) {
-	req.session.destroy();
-	res.redirect("/");
+		res.render("account", {usn: req.session.account.username, b: doc.bio});
+	});
+};
+var renderChat = function(req, res) {
+	res.render("app");
 };
 
 var login = function(req, res) {
@@ -40,7 +53,7 @@ var signup = function(req, res) {
 		return res.status(400).json({error: "Passwords do not match."});
 	}
 
-	Account.AccountModel.generateHash(req.body.pass, function(salt, hash) {
+	Account.AccountModel.generateHash(req.body.password, function(salt, hash) {
 		var accountData = {
 			username: req.body.username,
 			salt: salt,
@@ -62,13 +75,45 @@ var signup = function(req, res) {
 	});
 };
 
-var chatPage = function(req, res) {
-	res.render("app");
+// Updates or sets the user's bio.
+var updateaccount = function(req, res) {
+	if(!req.body.bio) {
+		return;
+	}
+
+	Account.AccountModel.findByUsername(req.session.account.username, function(err, doc) {
+		if(err)
+		{
+			return callback(err);
+		}
+        if(!doc) {
+            return callback();
+        }
+        var user = doc;
+        user.bio = req.body.bio;
+
+        user.save(function(err) {
+        	if(err) {
+        		console.log(err);
+        		return res.status(400).json({error: "An error occurred"});
+        	}
+        });
+	});
+};
+ 
+// Ends the user session and redirects to the app's home page.
+var logout = function(req, res) {
+	req.session.destroy();
+	res.redirect("/");
 };
 
-module.exports.loginPage = loginPage;
+// Export all functions.
+module.exports.renderLogin = renderLogin;
+module.exports.renderSignup = renderSignup;
+module.exports.renderAccount = renderAccount;
+module.exports.renderAbout = renderAbout;
+module.exports.renderChat = renderChat;
+module.exports.updateaccount = updateaccount;
 module.exports.login = login;
-module.exports.logout = logout;
-module.exports.signupPage = signupPage;
 module.exports.signup = signup;
-module.exports.chatPage = chatPage;
+module.exports.logout = logout;
