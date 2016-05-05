@@ -11,6 +11,8 @@ var router = function(app) {
 	app.get("/about", middleware.reqLogIn, controllers.Account.renderAbout);
 	app.get("/app", middleware.reqLogIn, controllers.Account.renderChat);
 
+	// Route chat functions.
+
 	// Route session and account functions.
 	app.post("/updateaccount", middleware.reqLogIn, controllers.Account.updateaccount);
 	app.get("/logout", middleware.reqLogIn, controllers.Account.logout);

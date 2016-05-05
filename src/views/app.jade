@@ -23,17 +23,64 @@ html(lang='en')
 
     // Include custom scripts.
     script(src="/assets/client.js")
-  body
+  block body
     #sidebar
       h1 cb
       #icons
-        a(href="/app" class="icon" data-toggle="tooltip" data-placement="right" title="Chat")
+        a#openchatdrawer(href="" class="icon" data-toggle="tooltip" data-placement="right" title="Chats")
           i(class="sidebaricon active fa fa-comment fa-2x")
+        a#opencontactdrawer(href="" class="icon" data-toggle="tooltip" data-placement="right" title="Contacts")
+          i(class="sidebaricon fa fa-users fa-2x")
         a(href="/account" class="icon" data-toggle="tooltip" data-placement="right" title="Account")
           i(class="sidebaricon fa fa-cog fa-2x")
         a(href="/about" class="icon" data-toggle="tooltip" data-placement="right" title="About")
           i(class="sidebaricon fa fa-question-circle fa-2x")
         a(href="/logout" class="icon" data-toggle="tooltip" data-placement="right" title="Sign Out")
           i(class="sidebaricon fa fa-sign-out fa-2x")
+    #chats
+      div.top 
+        i(class="add_chat fa fa-plus fa-2x")
+        i#close_chats(class="fa fa-times fa-2x")
+        h2 Chats
+      if !chats || chats.length == 0
+        div.bottom
+          p You don't have any chats yet.
+      else
+        each val in chats
+          div.chat
+            a(href="")
+              i(class="fa fa-times")
+            p #{val.name}
+            div.status #{val.status}
+            p #{val.date}
+            p #{val.lastmessage}
+    #contacts
+      div.top 
+        i#add_contact(class="fa fa-plus fa-2x")
+        i#close_contacts(class="fa fa-times fa-2x")
+        h2 Contacts
+      if !contacts || contacts.length == 0
+        div.bottom
+          p You don't have any contacts yet.
+      else
+        each val in contacts
+          div.contact
+            a(href="")
+              i(class="fa fa-times")
+            p #{val.name}
+            div.status #{val.status}
     #main
       h2 This is where chats will take place in my final project!
+      form#addchat(name="addchat", action="/addchat", method="POST")
+        i(class="closebox fa fa-times fa-2x")
+        label(for="username") username
+        input(type="text", name="username")
+        label(for="message") message
+        textarea(name="message", rows="4", cols="50")
+        a#chsubmit(class="mybutton" href="") Send
+      form#addcontact(name="addcontact", action="/addcontact", method="POST")
+        i(class="closebox fa fa-times fa-2x")
+        label(for="username") username
+        input(type="text", name="username")
+        label(for="message") message
+        a#csubmit(class="mybutton" href="") Save

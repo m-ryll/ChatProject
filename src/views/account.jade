@@ -29,12 +29,15 @@ html(lang='en')
       #icons
         a(href="/app" class="icon" data-toggle="tooltip" data-placement="right" title="Chat")
           i(class="sidebaricon fa fa-comment fa-2x")
+        a(href="" class="icon" data-toggle="tooltip" data-placement="right" title="Contacts")
+          i(class="sidebaricon fa fa-users fa-2x")
         a(href="/account" class="icon" data-toggle="tooltip" data-placement="right" title="Account")
           i(class="sidebaricon active fa fa-cog fa-2x")
         a(href="/about" class="icon" data-toggle="tooltip" data-placement="right" title="About")
           i(class="sidebaricon fa fa-question-circle fa-2x")
         a(href="/logout" class="icon" data-toggle="tooltip" data-placement="right" title="Sign Out")
           i(class="sidebaricon fa fa-sign-out fa-2x")
+    #contentbar
     #main
       h2 Account
       form#account(name="account", action="/updateaccount", method="POST")

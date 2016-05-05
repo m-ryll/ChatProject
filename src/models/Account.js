@@ -31,9 +31,13 @@ var AccountSchema = new mongoose.Schema({
         required: true
     },
     
-    createdData: {
+    createdDate: {
         type: Date,
         default: Date.now
+    },
+
+    contacts: {
+        type: Array
     }
 });
 
