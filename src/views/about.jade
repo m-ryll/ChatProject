@@ -34,17 +34,22 @@ html(lang='en')
         a(href="/account" class="icon" data-toggle="tooltip" data-placement="right" title="Account")
           i(class="sidebaricon fa fa-cog fa-2x")
         a(href="/about" class="icon" data-toggle="tooltip" data-placement="right" title="About")
-          i(class="sidebaricon active fa fa-question-circle fa-2x")
+          i(class="sidebaricon fa fa-question-circle fa-2x")
         a(href="/logout" class="icon" data-toggle="tooltip" data-placement="right" title="Sign Out")
           i(class="sidebaricon fa fa-sign-out fa-2x")
     #contentbar
     #main
       h2 About
-      h3 Chatterbox
-      p Chatterbox is a project created for IGME 430: Rich Media and Web App Dev II. Its main purpose is to demonstrate my ability to use a Model-View-Controller framework with Node.js to create dynamic web apps. This particular site is simple in functionality as I plan to extend it for my final course project, which will allow users to create ongoing chats with other users. The project was a challenge because I am still having trouble comprehending Node.js on top of having to learn an entire new method of creating applications with MVC. However, I feel fairly comfortable with these new concepts and look forward to creating something really cool for my final project!
-      h3 MVC
-      p As recommended in the project outline, I used Express as my MVC framework. Views are created with Jade, a popular templating language. The only model I have currently is a user account model, which only stores a username, password, and bio. For the final project, I hope to create a Chat model which will store two user id's and the contents of the chat (if that is feasible).
-      h3 Mongo
-      p I used Mongo to store and retrieve the account information. Again, for the final project I plan to use Mongo more extensively to store chat information.
-      h3 Jade
-      p I utilized Jade as my templating language. It had a bit of a learning curve because I'm so comfortable with strict HTML5 and it was a challenge to have to learn something that was so similar but also so different from HTML. I definitely appreciate the power of templating languages now, though.
+      h4 Chatterbox
+      p Chatterbox's main purpose is to provide a clean interface in which users can chat with friends. Users should ask for a friend's username in real life, reminiscent of older chat clients such as AIM in which users had to manually add friends by asking for and adding their username. 
+      p Once the user has their friend's name, they can add the new friend to their contacts or send a direct message. Both methods save the friend to the user's contact list, which allows the user to view their friends' profiles.
+      h4 Post-Mortem
+      p A lot went surprisingly right with this app, but a lot also went wrong. I struggled a LOT with learning MVC architecture, Jade, Express and Node.js as a whole. I'm still learning but I find that I have a fairly good grasp of things now.
+      p I was really happy toward the end of the semester when I could easily code new features and they would work right away. For example, adding users and displaying them in the chat list took literal weeks of trial and error. In contrast, I added the user profile feature in around 30 minutes with minimal (if any) debugging needed.
+      p I was very pleased with my database architecture once I figured out how Schemas worked. I had taken ISTE's Intro to Database and Data Modeling a few semesters ago for my web development minor so I was able to apply knowledge that I had learned in that class.
+      p I was also fairly happy with the UI design. Unfortunately, because the project took such a long time and I saved UI/UX for last, there are quite a few embarrassing UX hiccups that, being a UI/UX perfectionist, I would have eliminated had I more time to focus on them.
+      p By far, the biggest UX issue and disappointment that I have for this project as it stands right now is that chats don't quite happen in real time. The sending user receives a page redirect as soon as the message is sent but the receiving user has to manually refresh the page. I know I could have figured it out and I have a bad feeling that it may even be a simple task to at least have the page redirect itself for the receiving user but I just don't have the time to finish it. In a perfect world, the page would not redirect at all to send messages but, alas, we do not live in a perfect world and humans need sleep in this one.
+      h4 Architecture
+      p I am using the MVC model for this project. The client is templated with Jade, which can make get and post requests to the server. These requests are then routed to the correct controllers, which produce appropriate responses which ultimately send data back to the client. I have models for Accounts, Chats, and Messages. Chats take references to Accounts in order to connect users, and Messages take references to Chats in order to connect the messages to the chats.
+      h4 Interest
+      p I was most interested in creating a self-contained web app complete with user accounts and data associated with those accounts. I've always been interested in creating something like this but I always felt that it would be too complicated for me to learn. In truth, it WAS complicated - but after being able to actually mess with example code from class and then create my own project, I feel I have at least a small grasp of the topic now.

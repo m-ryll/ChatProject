@@ -65,10 +65,6 @@ html(lang='en')
           a(href='/user/#{val}' class='chatlink')
             span.chat: p #{val}
     #main
-      #chatbox
-        if messages
-          each val in messages
-            p.msg (#{val.timestamp}) #{val.username}: #{val.message}
       form#addchat(name="addchat", action="/addchat", method="POST")
         i(class="closebox fa fa-times fa-2x")
         input#chatusername(type="text", name="username", placeholder="username")
@@ -78,6 +74,10 @@ html(lang='en')
         i(class="closebox fa fa-times fa-2x")
         input#contactusername(type="text", name="username", placeholder="username")
         a#csubmit(class="mybutton" href="") Save
-      form#addmessage(name="addmessage", action="/addmessage", method="POST")
-        input#message(type="text", name="message")
-        a#msubmit(class="sendbutton" href=""): i(class="fa fa-arrow-right fa-2x" aria-hidden="true")
+      if user
+        h2 #{user.username}
+        h3 about me
+        if user.bio != "" && user.bio != undefined && user.bio != null
+          p#biography #{user.bio}
+        else
+          p#biography I haven't written anything about myself yet! :(

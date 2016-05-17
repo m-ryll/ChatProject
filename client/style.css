@@ -16,8 +16,11 @@ body {
 	font-family: 'Roboto', sans-serif;
 	background-color: #ecf1ee;
 }
-h1, h2 {
+h1, h2, h3 {
 	text-align: center;
+}
+h4 {
+	font-size: 17pt;
 }
 p {
 	font-size: 15pt;
@@ -26,7 +29,7 @@ p {
 	z-index: 1000;
 }
 a {
-	z-index: 1001;
+	z-index: 1005;
 }
 a:hover {
 	text-decoration: underline; 
@@ -94,33 +97,58 @@ a.icon:last-child {
 	padding: 15px;
 }
 
-#chats {
-	position: absolute;
-	width:250px;
-	height: 100vh;
-	top: 0;
-	left: 75px;
-	border-right: 2px solid #3f413d;
-}
-
-#contacts {
+#chats, #contacts {
 	display: none;
-	position: absolute;
+	position: fixed;
 	width:250px;
 	height: 100vh;
 	top: 0;
 	left: 75px;
 	border-right: 2px solid #3f413d;
+	z-index: 1002;
+}
+a.chatlink,
+a.chatlink:hover,
+a.chatlink:active,
+a.chatlink:visited {
+	z-index: 1005;
+	text-decoration: none;
+	color: black;
+}
+span.chat {
+	border-bottom: 1px solid #3f413d;
+	display: block;
+	width: 100%;
+}
+span.chat p {
+	padding: 10px;
+	margin: 0;
+}
+a span.chat:hover {
+	background-color: #82847c;
+	cursor: pointer;
+	text-decoration: none;
+}
+span.selected {
+	background-color: #82847c;
 }
 
 #addchat {
 	display: none;
+	background-color: #ecf1ee;
+	z-index: 1010;
 }
 
 #addcontact {
 	display: none;
 }
-
+#chatbox {
+	position: absolute;
+	left: 325px;
+	width: 60vw;
+	top: 5vh;
+	margin-bottom: 15vh;
+}
 /* ----- Forms ----- */
 form {
 	width: 500px;
@@ -163,9 +191,10 @@ a.mybutton {
 	margin: 10px auto;
 }
 .closebox {
-	positon: absolute;
-	right: 0;
+	position: absolute;
 	top: 0;
+	right: 0;
+	cursor: pointer;
 }
 
 /* ----- Main  ----- */
@@ -176,42 +205,36 @@ a.mybutton {
 	height: 100vh;
 	padding: 200px;
 }
-#chatcontainer {
-	width: 600px;
-	border: 1px solid black;
-	height: 600px;
-	border-radius: 15px;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+#addmessage {
+	background-color: #ecf1ee;
+	border: none;
+	position: fixed;
+	left: 400px;
+	bottom: 0;
+	top: auto;
+	width: 60vw;
+	padding-top: 5vh;
+	height: 15vh;
+	transform: none;
 }
-#rightchat {
-	width: 600px;
-	height: 600px;
-	float: right;
-	position: relative;
-	top-right-radius: 15px;
-	bottom-right-radius: 15px;
+#addmessage input {
+	background-color: #ecf1ee;
+	border: none;
+	border-bottom: 1px solid black;
+	display: inline;
+	width: 90%;
 }
-#chat {
-	overflow-y: scroll;
-	height: 480px;
-	margin: 10px 0 0 10px;
-}
-#message {
-	position: absolute;
-	border: 1px solid black;
-	border-radius: 15px;
-	width: 500px;
-	height: 50px;
-	padding: 0 10px;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: 15px;
-	margin: 0 auto;
+#addmessage input:focus {
 	outline: none;
 }
-#message:focus {
-	border: 2px solid black;
+.sendbutton,
+.sendbutton:hover,
+.sendbutton:active,
+.sendbutton:visited {
+	display: inline;
+	border: none;
+	color: black;
+}
+#biography {
+	text-align: center;
 }

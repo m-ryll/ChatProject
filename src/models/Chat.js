@@ -9,17 +9,17 @@ var ChatSchema = new mongoose.Schema({
         ref: "Account"
     }],
 
-    messages: {
-        type: Array
-    }
+    usernames: [{
+        type: String
+    }]
 });
 
 ChatSchema.statics.findByUser = function(userId, callback) {
     var search = {
-        owner: mongoose.Types.ObjectId(userId)
+        users: userId
     };
 
-    return ChatSchema.find(search).select("owner messages").exec(callback);
+    return ChatModel.find(search).select("users usernames").exec(callback);
 };
 
 ChatModel = mongoose.model('Chat', ChatSchema);

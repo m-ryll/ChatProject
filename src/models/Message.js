@@ -27,10 +27,10 @@ var MessageSchema = new mongoose.Schema({
 
 MessageSchema.statics.findByChat = function(chatId, callback) {
     var search = {
-        owner: mongoose.Types.ObjectId(chatId)
+        chat: mongoose.Types.ObjectId(chatId)
     };
 
-    return MessageSchema.find(search).select("chat user message timestamp").exec(callback);
+    return MessageModel.find(search).select("chat username message timestamp").exec(callback);
 };
 
 MessageModel = mongoose.model('Message', MessageSchema);

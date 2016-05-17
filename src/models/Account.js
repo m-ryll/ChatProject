@@ -36,9 +36,9 @@ var AccountSchema = new mongoose.Schema({
         default: Date.now
     },
 
-    contacts: {
-        type: Array
-    }
+    contacts: [{
+        type: String
+    }]
 });
 
 AccountSchema.methods.toAPI = function() {

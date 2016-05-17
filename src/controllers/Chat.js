@@ -3,34 +3,67 @@ var Chat = models.Chat;
 var Message = models.Message;
 var Account = models.Account;
 
+// Add a new chat to the users accounts.
 var addChat = function(req, res) {
-	if(!req.body.username || !req.message) {
+	if(!req.body.username || !req.body.message) {
 		return res.status(400).json({error: "Body username and message are required."});
 	}
 
-	var userId;
-	Account.AccountModel.findByUsername(req.body.username, function(err, doc) {
+	var receivingUserId;
+	var sendingUserId;
+
+	Account.AccountModel.findByUsername(req.session.account.username, function(err, doc1) {
 		if(err)
 		{
-			return callback(err);
+			console.log(err);
 		}
-        if(!doc) {
-            return callback();
+        if(!doc1) {
+            console.log("USER DOES NOT EXIST");
+            return res.status(400).json({error: "User does not exist"});
         }
+        
+        sendingUserId = doc1.id;
 
-        userId = doc.id;
+        Account.AccountModel.findByUsername(req.body.username, function(err, doc2) {
+			if(err)
+			{
+				console.log(err);
+			}
+	        if(!doc2) {
+	            console.log("USER DOES NOT EXIST");
+	            return res.status(400).json({error: "User does not exist"});
+	        }
+
+	        receivingUserId = doc2.id;
+
+	        // Add user to sending user's contact list.
+	        doc1.contacts.push(req.body.username);
+
+	        doc1.save(function(err) {
+	        	if (err) {
+					console.log(err);
+				}
+
+				// Send retrieved user id's once both have been found!
+				// This function was written before I understood callbacks lol. "WHY IS MY CODE RUNNING OUT OF ORDER???"
+	        	chatCreator(req.body.username, req.session.account.username, sendingUserId, receivingUserId, req.body.message, res);
+	        });
+		});
 	});
+}
 
+function chatCreator(receivingUsername, sendingUsername, sendingId, receivingId, msg, res) {
 	var chatData = {
-		users: [req.session.account.id, userId]
+		users: [sendingId, receivingId],
+		usernames: [sendingUsername, receivingUsername]
 	};
 
 	var newChat = new Chat.ChatModel(chatData);
 
 	var messageData = {
 		chat: newChat.id,
-		username: req.session.account.username,
-		message: req.body.message
+		username: sendingUsername,
+		message: msg
 	};
 
 	var newMessage = new Message.MessageModel(messageData);
@@ -38,11 +71,18 @@ var addChat = function(req, res) {
 	newChat.save(function(err) {
 		if (err) {
 			console.log(err);
-			return res.status(400).json({error: "Chat could not be created"});
 		}
 
-		res.json({redirect: "/app"});
+		newMessage.save(function(err) {
+			if (err) {
+				console.log(err);
+				return res.status(400).json({error: "Message could not be sent"});
+			}
+
+			res.json({redirect: "/app/" + newChat._id});	
+		});
 	});
 };
 
 // Export all functions
+module.exports.addChat = addChat;
